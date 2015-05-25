@@ -1,0 +1,84 @@
+    <div class="container">
+        <div class="row">                            
+            <div class="col-sm-12">
+                <div class="box">
+                            <?php 
+                            if (!empty($alert['success'])) {
+                            foreach ($alert['success'] as $key => $value) { 
+                            ?>                            
+                                <div class="alert alert-success"><?php echo $value; ?></div>
+                            <?php 
+                                }} 
+                            ?>
+
+                            <?php 
+                            if (!empty($alert['info'])) {
+                            foreach ($alert['info'] as $key => $value) { ?>                            
+                                <div class="alert alert-info"><?php echo $value; ?></div>
+                            <?php 
+                                }} 
+                            ?>
+
+                            <?php 
+                            if (!empty($alert['warning'])) {
+                            foreach ($alert['warning'] as $key => $value) { 
+                            ?>                            
+                                <div class="alert alert-warning"><?php echo $value; ?></div>
+                            <?php 
+                                }} 
+                            ?>
+
+                            <?php 
+                            if (!empty($alert['danger'])) {
+                            foreach ($alert['danger'] as $key => $value) { 
+                            ?>                            
+                                <div class="alert alert-danger"><?php echo $value; ?></div>
+                            <?php 
+                                }} 
+                            ?>
+
+                            <?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>   
+
+                            <div class="panel panel-default">      
+                            <div class="panel-body">
+
+                                <?php 
+                                    $at = array('role'=>'form');
+                                    echo form_open('',$at); 
+                                ?>
+
+                                <fieldset>
+                                <legend>Editar Modelo</legend>                                    
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="id_marca">Marca:</label>
+                                        <select name="id_marca" id="id_marca" class="form-control" required>
+                                            <option value="">SELECCIONE...</option>
+                                            <?php foreach ($table_marcas as $r) : ?>
+                                            <option value="<?php echo $r['id_marca']; ?>" <?php  if($row['id_marca']==$r['id_marca']){ echo 'selected'; } ?>><?php echo $r['marca']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label for="modelo">Modelo:</label>
+                                        <input type="text" name="modelo" id="modelo" class="form-control" maxlength="250" required autofocus value="<?php echo $row['modelo']; ?>">
+                                    </div>                               
+                                </div>     
+
+                                <br />
+                                <button type="submit" class="btn btn-default">Guardar</button>
+                                <a href="<?php echo site_url($controller.'/index'); ?>" class="btn btn-default">Volver</a>
+                                <input type="hidden" name="id_modelo" value="<?php echo $row['id_modelo']; ?>">                                
+                                <input type="hidden" name="id_usuario" value="<?php echo $session['id_usuario']; ?>">
+                                </fieldset>   
+                                
+                                <?php 
+                                    echo form_close(); 
+                                ?>
+
+                            </div>
+                            </div>
+                </div>
+            </div>                            
+    </div>
+    </div>
